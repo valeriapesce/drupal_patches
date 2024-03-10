@@ -1,0 +1,14 @@
+diff --git a/modules/search_api_db/src/Plugin/search_api/backend/Database.php b/modules/search_api_db/src/Plugin/search_api/backend/Database.php
+index 48e16599..25ffae7e 100644
+--- a/modules/search_api_db/src/Plugin/search_api/backend/Database.php
++++ b/modules/search_api_db/src/Plugin/search_api/backend/Database.php
+@@ -3031,7 +3031,8 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
+           ->condition('t.item_id', $all_results, 'IN');
+         if ($pass == 1) {
+           $field_query
+-            ->condition('t.word', $keys, 'NOT IN')
++			// FAO AGROVOC: Patch not to exclude the exact match from the possible suggestions: commented out following line:
++            //->condition('t.word', $keys, 'NOT IN')
+             ->condition('t.word', $incomplete_like, 'LIKE');
+         }
+         if (!isset($word_query)) {
